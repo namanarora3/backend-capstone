@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 CORS_ORIGIN_ALLOW_ALL = True
-#CORS_ORIGIN_WHITELIST = ['*']
+# CORS_ORIGIN_WHITELIST = ['*']
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
-    'products',
+    'report',
     'rest_framework.authtoken',
     'corsheaders',
     'rest_framework',
@@ -133,7 +133,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL2 = '/media/'
+# settings.py
+MEDIA_URL = "https://2d8lz4pf-8000.inc1.devtunnels.ms/media/"
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 # Default primary key field type
