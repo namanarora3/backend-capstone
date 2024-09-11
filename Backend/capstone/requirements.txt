@@ -8,7 +8,9 @@ django-filter==23.5
 django-import-export==4.0.9
 django-storages==1.14.4
 djangorestframework==3.12.4
+gunicorn==23.0.0
 jmespath==1.0.1
+packaging==24.1
 pillow==10.3.0
 psycopg2==2.9.9
 psycopg2-binary==2.9.9
