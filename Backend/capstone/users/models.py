@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, password=None, is_staff=False, is_superuser=False):
+    def create_user(self, email, name, dob=None, country=None, password=None, is_staff=False, is_superuser=False):
         if not email:
             raise ValueError('Users must have an email address')
         now = timezone.localtime(timezone.now())
@@ -12,11 +12,12 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=email,
             name=name,
+            dob=dob,
+            country=country,
             is_staff=is_staff,
             is_active=True,
             is_superuser=is_superuser,
             last_login=now,
-
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -35,6 +36,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
   is_superuser = models.BooleanField(default=False)
   is_active = models.BooleanField(default=True)
   is_official = models.BooleanField(default=False)
+  dob = models.DateField(null=True, blank=True)
+  country = models.CharField(max_length=255, null=True, blank=True)
 
   USERNAME_FIELD = 'email'
 

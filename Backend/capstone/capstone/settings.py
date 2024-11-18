@@ -52,7 +52,6 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = "users.CustomUser"
 
 MIDDLEWARE = [
-	# test
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',

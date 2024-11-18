@@ -15,7 +15,9 @@ class RegisterUserSerializer(ModelSerializer):
     return CustomUser.objects.create_user(
       email=validated_data.get('email'),
       password=validated_data.get('password'),
-      name=validated_data.get('name')
+      name=validated_data.get('name'),
+      dob=validated_data.get('dob'),
+      country=validated_data.get('country')
     )
 
 class LoginUserSerializer(serializers.Serializer):
@@ -35,3 +37,9 @@ class LoginUserSerializer(serializers.Serializer):
         raise exceptions.ValidationError("unable to login with these credentials")
     else:
       raise exceptions.ValidationError("provide both email and password")
+
+class UserSerializer(serializers.ModelSerializer):
+
+  class Meta:
+    model = CustomUser
+    fields = ['name', 'email', 'dob', 'country']
