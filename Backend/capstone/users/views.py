@@ -53,3 +53,14 @@ class UserDetails(generics.RetrieveUpdateAPIView):
         if 'email' in request.data and CustomUser.objects.filter(email=request.data['email']).exclude(id=user.id).exists():
             return Response({'error':'email already exists'}, status=status.HTTP_400_BAD_REQUEST)
         return super().update(request, *args, **kwargs)
+
+
+class TokenView(APIView):
+
+  def get(self, request):
+    try:
+      user = CustomUser.objects.get(email=request.data['email'])
+    except:
+      return Response({"Status":"Failure", "Message":"User not found"}, status=status.HTTP_404_NOT_FOUND)
+    token,_ = Token.objects.get_or_create(user=user)
+    return Response({"Status":"Success", "Token":str(token)}, status=status.HTTP_200_OK)
